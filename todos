@@ -1,0 +1,97 @@
+** Super Impt
+=> worker return to base routine
+=> Let rockets unload all units at once
+=> ** Merge rockets into the move bfs
+=> Test pathing on shift
+=> Fix worker resourcing
+=> ** Check out why units are converted to scouts (Behaviour is currently disabled)
+=> ** Upgrade workers to single bfs precomp (Their movement is trash atm)
+=> ** Fix bugs with resourcing rockets (Check the code, resourcing is disabled atm)
+=> ** Update astronomer to add all karbonite deposits on Mars to the contig values
+=> ** Use the bfs when microing
+=> Single bfs for all workers and all combat units => test for combat units first
+=> Fix pertinent bug on Sprint tourney (Find out what it is) => Fight first 3 tourney maps vs examplefuncsplayer
+=> When given multiple workers, choose to spawn factory in defensible area rather than next to enemies (i.e. Julia)
+=> Worker behaviour for Mars (The go to nearest karbonite and replicate) => Not implemented
+=> Rebalance for new meta
+=> Mage blink
+
+=> try adding unbuilt factories to the bfs for workers to go towards
+=> watch lost games (steam oaks james random team)
+=> test pipes + olympus
+=> get workers to rep like crazy after turn 750
+=> knights micro testing, magi, rps counter
+=> knight should just use the move to nearest enemy
+=> test diff num of workers
+=> try diff healer compos
+=> test maps with init karbonite on mars
+
+=> lost to inferior micro => need to stick units together, not build so many workers
+
+
+- change the rate at which factories are built (??)
+- workers update => give them a class like the soldiers to store pertinent info, also give them a workerRole
+=> workers should run away from enemies when they see them
+1. Healer, Mage behaviour
+Healer => Run away from enemies that try to attack you (IMPT)
+=> Go towards allies to try to heal them (Less impt, but quite high)
+2. Find nearest medic if below full health and has no nearby enemy
+3. Reward non full health units that get within medic range
+5. Astronomer and Researcher modules => Should base research on number of units available (or at least based on the proportion in the factory)
+Research priority => Workers Lvl 1, Rangers Lvl 1, Healer Lvl 1, Rocket Lvl 1, Ranger => Lvl 3
+Once have snipe, then update ranger micro to snipe when not in danger (no nearby enemies)
+Then research rockets
+6. Get workers to run away from enemies
+7. Unit comp => all rangers, some healers ???
+Update ranger macro => If spotted healer and at low health, then use avoid algorithm and run away towards healer, test this vs rangerplayer
+8. Set ranger as scouts 
+9. Base unit production upon which enemy units the enemy has
+Mage => Counter Knight
+Ranger => Counter Mage
+Ranger + Knight => Counter Ranger
+Knight => Absorb damage
+Healer => Support Unit
+Only do this when more than 5 distinct enemy has been sighted
+Spawn healer as a ratio of friendly units to healers, give healer spawning priority (i.e. 5 units per healer)
+10. Update research to be based on what type of units I have after researching the basic research
+
+Make some proper micro onto knights
+
+Improvements
+- Get workers to move towards rockets when relevant
+- Mars worker replication procedure
+1. Update cheap move to to bugging
+2. Units should be alerted to the nearest enemy rather than just a global enemy
+3. Mars commander should check if dest is reachable on Mars
+4. Better Mars landing locations
+- Change the way factories are built to spam faster
+[Risky]
+- Micro rethink => maximise(whole army damage dealt - whole army damage received)
+- Gang up on enemies
+- Avoid enemies that don't already have a target
+- Research based on what units are around
+
+Optimisations
+1. Save compute cycles by storing the bfs result and just using it until it's not doable
+
+Major todos:
+1. Set base prod upon which enemy units the enemy has, then base research on what allied units we have
+=> Need to store current research level, then penalise units that have a higher level of research
+2. Workers update => Make workers their own class
+- Get units to repair stuff
+
+
+GuanPlayers:
+guanplayer => Some basic code for microing and ability to play out a game
+guanplayer2 => Space code
+guanplayer3 => Todo: Worker update => Make the workers work like how the soldiers are working
+=> Let them store some info that we'll use to make better decisions
+Macro update => Build based on what enemy has, Research update => Research based on what units I have,
+Run the micro through tests
+guanplayer4 => Less memory leakage, improved pathfinding, improved performance
+[Update pathfinding to bugging algorithm]
+
+Steps to move forward on:
+- Update pathing to bugging algorithm => Read: Lectures
+- Give the workers a class of their own
+- Use the sniping ability once it's researched to down factories and other buildings

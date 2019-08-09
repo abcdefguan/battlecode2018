@@ -1,0 +1,32 @@
+This was the code I submitted for Battlecode 2018 for the International
+Qualifiers. I was from team Sudoers (which is just me :D). I placed 5-6th place
+in the International Qualifiers, which accepted only 4 teams to the finals.
+
+I do think I've made a good effort with this bot though.
+It was originally written in Java, but I migrated the whole thing over to
+Python because there was some kind of memory leak involving Java and I really
+couldn't fix the issue.
+
+The entry point is run.py
+The other classes represent a strategy type
+(ie commander, astronomer, intel_map, researcher, mover)
+Or they represent a unit type (ie healer, knight, mage, ranger, soldier)
+The astronaut class controls rocket behaviour
+There are also some helper classes in helper.py
+
+The general movement pattern of this bot uses a BFS with the enemy base and rockets
+(if it's more than turn 550) as sources. Each bot does this computation when
+it is spawned and uses the results of this computation to perform movement.
+
+The general combat code prioritizes ganging up when attacking and retreating
+low health units to healers so that they can be healed up. When units sense
+nearby enemies, they go into a micro mode where they do a lot of computation
+to determine which enemy has the best target score, which they fire at and also
+which position they should move to so that they can avoid attacks.
+
+There is a rocket panic round (round 550), after which workers will prioritize
+building rockets and the BFS for all combat units is changed such that they will
+move towards rockets, which will load them until they're full and then go
+to Mars.
+
+For research, this bot uses a hardcoded research strategy, found in researcher.py
